@@ -1,0 +1,64 @@
+{
+  "gateway": {
+    "bind": "0.0.0.0",
+    "port": 8080
+  },
+  
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "dm": {
+        "policy": "pairing",
+        "allowFrom": ["*"]
+      },
+      "guilds": {}
+    }
+  },
+  
+  "agents": {
+    "defaults": {
+      "name": "OpenClaw Assistant",
+      "personality": "Kamu adalah asisten AI yang helpful, friendly, dan berbicara dalam Bahasa Indonesia.",
+      "model": {
+        "primary": "openrouter/deepseek/deepseek-r1-0528:free",
+        "fallback": [
+          "openrouter/meta-llama/llama-3.3-70b-instruct:free",
+          "openrouter/google/gemini-2.0-flash-exp:free",
+          "openrouter/mistralai/mistral-small-3.1-24b-instruct:free",
+          "openrouter/moonshotai/kimi-k2:free",
+          "openrouter/meta-llama/llama-3.1-405b-instruct:free",
+          "openrouter/qwen/qwen3-coder:free",
+          "openrouter/nousresearch/hermes-3-llama-3.1-405b:free",
+          "openrouter/tngtech/deepseek-r1t-chimera:free"
+        ]
+      },
+      "temperature": 0.7,
+      "maxTokens": 4096
+    }
+  },
+  
+  "tools": {
+    "enabled": true,
+    "allowed": [
+      "web_search",
+      "web_browse",
+      "read_file",
+      "write_file",
+      "list_files",
+      "execute_command"
+    ]
+  },
+  
+  "security": {
+    "sandbox": true,
+    "rateLimiting": {
+      "enabled": true,
+      "maxRequestsPerMinute": 20
+    }
+  },
+  
+  "logging": {
+    "level": "info",
+    "format": "json"
+  }
+}
