@@ -12,39 +12,16 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 RUN npm install -g openclaw@latest
 
 WORKDIR /app
-RUN mkdir -p /tmp/.openclaw /tmp/workspace
+RUN mkdir -p /root/.openclaw /tmp/workspace
 
-COPY openclaw.json /tmp/.openclaw/openclaw.json
+COPY openclaw.json /root/.openclaw/openclaw.json
 
-ENV OPENCLAW_STATE_DIR=/tmp/.openclaw
+ENV OPENCLAW_STATE_DIR=/root/.openclaw
 ENV OPENCLAW_WORKSPACE_DIR=/tmp/workspace
 ENV NODE_ENV=production
 ENV PORT=8080
+ENV HOST=0.0.0.0
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "\
-    echo '=== OpenClaw Debug ===' && \
-    echo 'PORT='$PORT && \
-    echo '' && \
-    echo '=== Which openclaw ===' && \
-    which openclaw 2>&1 && \
-    echo '' && \
-    echo '=== Version ===' && \
-    openclaw --version 2>&1 && \
-    echo '' && \
-    echo '=== Help ===' && \
-    openclaw --help 2>&1 && \
-    echo '' && \
-    echo '=== List Commands ===' && \
-    openclaw 2>&1 && \
-    echo '' && \
-    echo '=== Trying to start ===' && \
-    openclaw serve --port $PORT --host 0.0.0.0 2>&1 || \
-    openclaw gateway --port $PORT --bind 0.0.0.0 2>&1 || \
-    openclaw start --port $PORT 2>&1 || \
-    openclaw run 2>&1 || \
-    echo 'All start commands failed' && \
-    echo '=== Keeping alive ===' && \
-    tail -f /dev/null \
-"]
+CMD ["sh", "-c", "echo 'Starting OpenClaw Gateway...' && openclaw gateway start --port $PORT --host $HOST 2>&1 || openclaw gateway --port $PORT 2>&1 || (echo 'Trying with config...' && openclaw gateway 2>&1)"]
