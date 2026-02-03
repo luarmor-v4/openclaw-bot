@@ -1,32 +1,17 @@
 {
   "gateway": {
-    "bind": "0.0.0.0",
-    "port": 8080,
-    "host": "0.0.0.0"
+    "port": 8080
   },
   "channels": {
     "discord": {
-      "enabled": true,
-      "dm": {
-        "policy": "open",
-        "allowFrom": ["*"]
-      }
+      "enabled": true
     }
   },
   "agents": {
     "defaults": {
-      "name": "OpenClaw Bot",
-      "personality": "Kamu adalah asisten AI yang helpful dan friendly.",
       "model": {
-        "primary": "openrouter/deepseek/deepseek-r1-0528:free",
-        "fallback": [
-          "openrouter/meta-llama/llama-3.3-70b-instruct:free",
-          "openrouter/google/gemini-2.0-flash-exp:free"
-        ]
+        "primary": "openrouter/deepseek/deepseek-r1-0528:free"
       }
     }
-  },
-  "security": {
-    "sandbox": true
   }
 }
