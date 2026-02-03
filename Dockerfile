@@ -1,7 +1,9 @@
 FROM node:22-slim
 
+# Install dependencies - TAMBAH git!
 RUN apt-get update && apt-get install -y \
     curl \
+    git \
     chromium \
     && rm -rf /var/lib/apt/lists/*
 
