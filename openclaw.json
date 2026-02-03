@@ -20,8 +20,7 @@
         "primary": "openrouter/deepseek/deepseek-r1-0528:free",
         "fallback": [
           "openrouter/meta-llama/llama-3.3-70b-instruct:free",
-          "openrouter/google/gemini-2.0-flash-exp:free",
-          "openrouter/moonshotai/kimi-k2:free"
+          "openrouter/google/gemini-2.0-flash-exp:free"
         ]
       }
     }
