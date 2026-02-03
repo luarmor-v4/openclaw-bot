@@ -18,21 +18,9 @@ COPY openclaw.json /root/.openclaw/openclaw.json
 
 ENV OPENCLAW_STATE_DIR=/root/.openclaw
 ENV OPENCLAW_WORKSPACE_DIR=/tmp/workspace
+ENV NODE_ENV=production
 ENV PORT=8080
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "\
-    echo '=== Gateway Help ===' && \
-    openclaw gateway --help 2>&1 && \
-    echo '' && \
-    echo '=== Gateway Start Help ===' && \
-    openclaw gateway start --help 2>&1 && \
-    echo '' && \
-    echo '=== Trying to start ===' && \
-    openclaw gateway start --port 8080 --host 0.0.0.0 2>&1 & \
-    sleep 5 && \
-    echo '=== Check if running ===' && \
-    curl -s http://localhost:8080/health 2>&1 || echo 'Health check failed' && \
-    tail -f /dev/null \
-"]
+CMD ["sh", "-c", "openclaw gateway --port 8080"]
