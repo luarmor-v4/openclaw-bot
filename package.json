@@ -1,0 +1,29 @@
+{
+  "name": "openclaw-bot",
+  "version": "1.0.0",
+  "description": "OpenClaw AI Assistant on Render.com",
+  "main": "index.js",
+  "scripts": {
+    "start": "openclaw gateway --port ${PORT:-8080} --bind 0.0.0.0",
+    "setup": "openclaw onboard",
+    "status": "openclaw channels status --probe",
+    "doctor": "openclaw doctor",
+    "pairing:list": "openclaw pairing list discord",
+    "pairing:approve": "openclaw pairing approve discord"
+  },
+  "keywords": [
+    "openclaw",
+    "ai",
+    "assistant",
+    "discord",
+    "bot"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "openclaw": "latest"
+  }
+}
